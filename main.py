@@ -4,9 +4,10 @@ from fastapi import FastAPI
 from users import models as users_models
 from database_connections.mysql_database_connection import engine
 from users import routes as user_routes
+from decouple import config
 
 
-app = FastAPI(root_path='/api')
+app = FastAPI(root_path=config('REVERSE_PROXY_ROOT_PATH'))
 app.include_router(user_routes.router)
 
 
